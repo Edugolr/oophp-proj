@@ -148,7 +148,6 @@ class UserController implements AppInjectableInterface
     }
     public function claimbonusActionPost()
     {
-        $title = "Bonus";
         $bonus = $this->app->request->getPost('bonus');
         $params = [$bonus, $this->app->session->get("useruname")];
         $this->app->db->connect();

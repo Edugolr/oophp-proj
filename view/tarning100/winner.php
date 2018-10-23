@@ -14,7 +14,7 @@ $method = $method ?? null;
         <input type="hidden" name="code" value="1">
         <input class="btn green" type="submit" name="reset" value="Claim Bonus">
     </form>
-<?php else: ?>
+<?php else : ?>
     <form class="" action=<?=$action ?> method=<?=$method ?> >
         <input class="btn red" type="submit" name="reset" value="reset">
     </form>

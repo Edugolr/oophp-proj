@@ -12,6 +12,15 @@ img {
     font-size: 0.875rem;
 }
 
+.etta {
+    min-height: 30px;
+    display: block;
+}
+
+.marginzero {
+    margin: 0;
+}
+
 .center {
     margin: auto;
     width: 40%;
@@ -129,7 +138,7 @@ body {
  */
 .outer-wrap-header {
     max-width: 100%;
-    min-height: 2em;
+    min-height: 7em;
     background-color: darkslategray;
     color: #000;
 }
@@ -144,7 +153,7 @@ body {
 
 .header-logo {
     position: absolute;
-    top: 7em;
+    top: 0m;
     left: 1em;
 }
 

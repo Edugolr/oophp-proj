@@ -12,5 +12,6 @@ namespace Anax\View;
 ?>
 
 <div class="header">
-    <img class="" style="height:100px" src="<?= url("img/logo.png") ?>" alt="">
+    <img class="header-logo " style="height:100px" src="<?= url("img/logo.png") ?>" alt="">
+    <h1 class="hero-text">Brädspelspalatset</h1>
 </div>
