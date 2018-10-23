@@ -1,4 +1,8 @@
-<?php namespace Anax\View; ?>
+<?php
+namespace Anax\View;
+
+?>
+<hr>
 <h1>Register</h1>
 <form  action="registerUser" method="post">
       <div class="container">

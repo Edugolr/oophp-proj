@@ -1,6 +1,9 @@
-<?php namespace Anax\View; ?>
+<?php
+namespace Anax\View;
+
+?>
 <hr>
-<?php if ($app->session->get("valid")): ?>
+<?php if ($app->session->get("valid")) : ?>
 <h1>Edit Content</h1>
 <form class="" action="createContent" method="get">
     <input class="btn" type="submit" name="" value="Create Content">
@@ -95,6 +98,6 @@
         <?php endforeach; ?>
     </table>
 </div>
-<?php else: ?>
+<?php else : ?>
     <h1>You are not logged in</h1>
 <?php endif; ?>

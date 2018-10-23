@@ -1,9 +1,11 @@
-<?php namespace Anax\View; ?>
+<?php
+namespace Anax\View;
+
+?>
 <hr>
 <h1>Admin</h1>
 
-
-<?php if ($app->session->get("valid")): ?>
+<?php if ($app->session->get("valid")) : ?>
     <div class="nav2">
         <a href="<?= "overview" ?>">Overview</a>
     </div>
@@ -11,11 +13,8 @@
     <form class="" action="logout" method="post">
         <input class="btn red" type="submit" name="" value="Logout">
     </form>
-<?php else: ?>
+<?php else : ?>
     <form action="login" method="post" >
-      <div class="imgcontainer">
-        <img src="img_avatar2.png" alt="Avatar" class="avatar">
-      </div>
 
       <div class="container">
         <label for="uname"><b>Username</b></label>

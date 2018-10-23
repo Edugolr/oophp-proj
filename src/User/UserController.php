@@ -15,7 +15,7 @@ class UserController implements AppInjectableInterface
 
     public function userActionGet()
     {
-        $title = "User" ;
+        $title = "User";
         $this->app->page->add("user/user");
 
         return $this->app->page->render([
@@ -45,10 +45,10 @@ class UserController implements AppInjectableInterface
         $res = $this->app->db->executeFetch($sql, $params);
         if (!$res) {
             $this->app->session->getOnce("message", "failed to login");
-            $this->app->session->set("validUser", False);
+            $this->app->session->set("validUser", false);
             $this->app->response->redirect('user/registerUser');
-        }else {
-            $this->app->session->set("validUser", True);
+        } else {
+            $this->app->session->set("validUser", true);
         }
 
         $this->app->page->add('user/overview', [
@@ -69,7 +69,6 @@ class UserController implements AppInjectableInterface
     }
     public function registerUserActionPost()
     {
-        $title = "User" ;
         $this->app->session->set("userpsw", $this->app->request->getPost('psw'));
         $this->app->session->set("useruname", $this->app->request->getPost('uname'));
 
@@ -116,8 +115,6 @@ class UserController implements AppInjectableInterface
     }
     public function editActionPost()
     {
-        $title = "User" ;
-
         $firstname = $this->app->request->getPost('firstname');
         $lastname = $this->app->request->getPost('lastname');
         $gender = $this->app->request->getPost('gender');

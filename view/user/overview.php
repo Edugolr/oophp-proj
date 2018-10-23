@@ -1,5 +1,9 @@
-<?php namespace Anax\View; ?>
-<?php if ($app->session->get("validUser")): ?>
+<?php
+namespace Anax\View;
+
+?>
+<hr>
+<?php if ($app->session->get("validUser")) : ?>
     <h1>Välkommen <?= $res->firstname ?>
         <hr>
         <img src="https://www.gravatar.com/avatar/<?=md5( strtolower( trim( "$res->username" ) ) ); ?>" />
@@ -13,6 +17,6 @@
     <form class="" action="logout" method="post">
         <input type="submit" name="" value="Logout">
     </form>
-<?php else: ?>
+<?php else : ?>
     <h1>You are not logged in</h1>
 <?php endif; ?>

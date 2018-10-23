@@ -1,4 +1,7 @@
-<?php namespace Anax\View; ?>
+<?php
+namespace Anax\View;
+
+?>
 <hr>
 <h1>Nyheter</h1>
 <hr>

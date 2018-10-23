@@ -29,10 +29,9 @@ class ProductsController implements AppInjectableInterface
 
         $this->app->db->connect();
         $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products WHERE deleted IS NULL ORDER BY published;";
-        // $sql = "SELECT * FROM products WHERE deleted IS NULL;";
         $res = $this->app->db->executeFetchAll($sql);
         foreach ($res as $row) {
-            $row->description = $this->filterText($row->description , $row->filter);
+            $row->description = $this->filterText($row->description, $row->filter);
         }
         $title = "Produkter" ;
         $this->app->page->add("products/produkter", [

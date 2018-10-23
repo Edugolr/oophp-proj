@@ -1,4 +1,7 @@
-<?php namespace Anax\View; ?>
+<?php
+namespace Anax\View;
+
+?>
 <hr>
 <h4><?= $res->title ?></h4>
 <?= $res->data ?>

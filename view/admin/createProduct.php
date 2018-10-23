@@ -1,5 +1,9 @@
-<?php namespace Anax\View; ?>
-<?php if ($app->session->get("valid")): ?>
+<?php
+namespace Anax\View;
+
+?>
+<hr>
+<?php if ($app->session->get("valid")) : ?>
     <form action="" method="post">
         Title: <input type="text" name="title"  value="title">
         Genre:
@@ -22,6 +26,6 @@
 
         <input class="btn" type="submit" name="add" value="Create">
     </form>
-<?php else: ?>
+<?php else : ?>
     <h1>You are not logged in</h1>
 <?php endif; ?>

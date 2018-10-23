@@ -9,24 +9,24 @@ use PHPUnit\Framework\TestCase;
  */
 class ContentControllerTest extends TestCase
 {
-     //
-     public function testfilterText()
-     {
-         $ContentController = new ContentController();
-         $this->assertInstanceOf("\Chai17\Content\ContentController", $ContentController);
+    //
+    public function testfilterText()
+    {
+        $contentController = new ContentController();
+        $this->assertInstanceOf("\Chai17\Content\ContentController", $contentController);
 
-         $res = $ContentController->filterText("# markdown", "markdown");
-         $exp = 'string';
-         $this->assertInternalType($exp, $res);
-     }
-     //
-     public function testindexActionGet()
-     {
-         $ContentController = new ContentController();
-         $this->assertInstanceOf("\Chai17\Content\ContentController", $ContentController);
+        $res = $contentController->filterText("# markdown", "markdown");
+        $exp = 'string';
+        $this->assertInternalType($exp, $res);
+    }
+    //
+    public function testindexActionGet()
+    {
+        $contentController = new ContentController();
+        $this->assertInstanceOf("\Chai17\Content\ContentController", $contentController);
 
-         $res = $ContentController->indexActionGet();
-         $exp = 'string';
-         $this->assertInternalType($exp, $res);
-     }
+        $res = $contentController->indexActionGet();
+        $exp = 'string';
+        $this->assertInternalType($exp, $res);
+    }
 }

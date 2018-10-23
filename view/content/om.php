@@ -1,3 +1,6 @@
-<?php namespace Anax\View; ?>
+<?php
+namespace Anax\View;
+
+?>
 <hr>
 <?= $res->data ?>

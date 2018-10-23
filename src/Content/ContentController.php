@@ -65,8 +65,6 @@ class ContentController implements AppInjectableInterface
             "recomended" => $recomended,
             "sale" => $sale,
         ]);
-        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products ORDER BY published LIMIT 3;";
-        $rekomenderad =  $this->app->db->executeFetchAll($sql);
         return $this->app->page->render([
             "title" => $title,
         ]);
@@ -80,10 +78,10 @@ class ContentController implements AppInjectableInterface
         $res = $this->app->db->executeFetchAll($sql);
 
         foreach ($res as $row) {
-            $row->data = $this->filterText($row->data , $row->filter);
+            $row->data = $this->filterText($row->data, $row->filter);
         }
 
-        $title = "blogg" ;
+        $title = "blogg";
         $this->app->page->add("content/blogg", [
             "res" => $res,
         ]);
@@ -124,5 +122,4 @@ class ContentController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
-
 }

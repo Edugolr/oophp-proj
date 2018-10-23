@@ -15,7 +15,7 @@ class AdminController implements AppInjectableInterface
 
     public function adminActionGet()
     {
-        $title = "Admin" ;
+        $title = "Admin";
         $this->app->page->add("admin/admin");
 
         return $this->app->page->render([
@@ -36,10 +36,10 @@ class AdminController implements AppInjectableInterface
         $res = $this->app->db->executeFetch($sql, $params);
         if ($res->username != "admin") {
             $this->app->session->getOnce("message", "failed to login");
-            $this->app->session->set("valid", False);
+            $this->app->session->set("valid", false);
             $this->app->response->redirect('admin/admin');
-        }else {
-            $this->app->session->set("valid", True);
+        } else {
+            $this->app->session->set("valid", true);
         }
 
         $sql = "SELECT * FROM products;";
