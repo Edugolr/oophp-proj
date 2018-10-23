@@ -75,7 +75,7 @@ class AdminController implements AppInjectableInterface
         $products = $this->app->db->executeFetchAll($sql);
         $sql = "SELECT * FROM users;";
         $users = $this->app->db->executeFetchAll($sql);
-        $sql = "SELECT * FROM content;";
+        $sql = "SELECT * FROM content WHERE type='post';";
         $content = $this->app->db->executeFetchAll($sql);
         $this->app->page->add('admin/overview', [
             "products" => $products,
@@ -188,7 +188,7 @@ class AdminController implements AppInjectableInterface
         $title = "Update";
         $this->app->db->connect();
 
-        $sql = "SELECT * FROM content WHERE id=?";
+        $sql = "SELECT * FROM content WHERE id=? ";
         $res = $this->app->db->executeFetch($sql, [$id]);
 
         $this->app->page->add('admin/update', [

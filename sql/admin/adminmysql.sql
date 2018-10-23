@@ -7,6 +7,7 @@ CREATE TABLE `users` (
     `lastname` VARCHAR(50),
 	`gender` VARCHAR(6) ,
     `phoneNumber` VARCHAR(75),
+    `bonus` BOOLEAN,
     `created_at` DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

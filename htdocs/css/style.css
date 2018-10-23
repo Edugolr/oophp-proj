@@ -12,6 +12,11 @@ img {
     font-size: 0.875rem;
 }
 
+.center {
+    margin: auto;
+    width: 40%;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));

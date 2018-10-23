@@ -4,9 +4,10 @@ namespace Anax\View;
 ?>
 <hr>
 <?php if ($app->session->get("valid")) : ?>
-<h1>Edit Content</h1>
+<h1>Hantera nyheter</h1>
+<hr>
 <form class="" action="createContent" method="get">
-    <input class="btn" type="submit" name="" value="Create Content">
+    <input class="btn" type="submit" name="" value="Skapa nyhet">
 </form>
 
 <div style="overflow-x:auto;">
@@ -41,10 +42,11 @@ namespace Anax\View;
         <?php endforeach; ?>
     </table>
 </div>
-
-<h1>Edit Products</h1>
+<hr>
+<h1>Hantera produkter</h1>
+<hr>
 <form class="" action="createProduct" method="get">
-    <input class="btn" type="submit" name="" value="Create Product">
+    <input class="btn" type="submit" name="" value="Skapa produkt">
 </form>
 <div style="overflow-x:auto;">
     <table>
@@ -80,8 +82,9 @@ namespace Anax\View;
         <?php endforeach; ?>
     </table>
 </div>
-<h1>Users</h1>
-
+<hr>
+<h1>Användare</h1>
+<hr>
 <div style="overflow-x:auto;">
     <table>
         <tr>
@@ -99,5 +102,5 @@ namespace Anax\View;
     </table>
 </div>
 <?php else : ?>
-    <h1>You are not logged in</h1>
+    <h1>Du måste vara inloggad som admin för åtkomst till denna sida</h1>
 <?php endif; ?>

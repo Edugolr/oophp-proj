@@ -5,7 +5,7 @@ namespace Anax\View;
 <hr>
 <?php if ($app->session->get("valid")) : ?>
     <div class="nav2">
-        <a href="<?= "overview"?>">Overview</a>
+        <a href="<?= url("admin/overview")?>">Översikt</a>
     </div>
     <form action="" method="POST">
         <?php foreach ($res as $key => $value) : ?>
@@ -15,9 +15,9 @@ namespace Anax\View;
         <?php endforeach; ?>
 
         <p>
-            <input class="btn res" type="submit"  value="Delete">
+            <input class="btn red" type="submit"  value="Radera">
         </p>
     </form>
 <?php else : ?>
-    <h1>You are not logged in</h1>
+    <h1>Du måste vara inloggad som admin för åtkomst till denna sida</h1>
 <?php endif; ?>

@@ -3,10 +3,10 @@ namespace Anax\View;
 
 ?>
 <hr>
-<?php $readonlys = ["id", "created", "updated", "deleted", "published"] ?>
+<?php $readonlys = ["id", "path", "created", "updated", "deleted", "published"] ?>
 <?php if ($app->session->get("valid")) : ?>
     <div class="nav2">
-        <a href="<?= "overview" ?>">Overview</a>
+        <a href="<?= url("admin/overview") ?>">Översikt</a>
     </div>
     <form action="" method="POST">
         <?php foreach ($res as $key => $value) : ?>
@@ -15,12 +15,21 @@ namespace Anax\View;
                 <?php if (in_array($key, $readonlys)) : ?>
                     <?php $readonly="readonly" ?>
                 <?php endif; ?>
+                <?php if ($key == "featured") : ?>
+                    <?= $key ?>
+                    <select class="" name="<?=$key ?>">
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                <?php else : ?>
+
                 <?php if ($key == "data" || $key == "description") : ?>
                         <?=$key ?>
                     <p><textarea name="<?=$key ?>" rows="8" cols="80"><?=$value ?></textarea> </p>
 
                 <?php else : ?>
                     <p><?=$key ?><input type="text" name="<?=$key ?>" <?=$readonly ?> value="<?=$value ?>"></p>
+                <?php endif; ?>
                 <?php endif; ?>
             </p>
         <?php endforeach; ?>
@@ -29,5 +38,5 @@ namespace Anax\View;
         </p>
     </form>
 <?php else : ?>
-    <h1>You are not logged in</h1>
+    <h1>Du måste vara inloggad som admin för åtkomst till denna sida</h1>
 <?php endif; ?>

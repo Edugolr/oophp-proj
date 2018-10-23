@@ -4,18 +4,16 @@ namespace Anax\View;
 ?>
 <hr>
 <?php if ($app->session->get("valid")) : ?>
+<div class="nav2">
+    <a href="<?= url("admin/overview")?>">Översikt</a>
+</div>
 <form action="" method="post">
-    Title: <input type="text" name="title"  value="title">
-    Path: <input type="text" name="path"  value="">
+    Titel: <input type="text" name="title"  value="title">
+    Sökväg: <input type="text" name="path"  value="">
     Slug: <input type="text" name="slug"  value="">
     <textarea name="data" rows="8" cols="80">Data</textarea>
-    <select class="round" name="type">
-        <option value="page">Page</option>
-        <option value="post">Post</option>
-    </select>
-
     <input class="btn" type="submit" name="add" value="Create">
 </form>
 <?php else : ?>
-    <h1>You are not logged in</h1>
+    <h1>Du måste vara inloggad som admin för åtkomst till denna sida</h1>
 <?php endif; ?>

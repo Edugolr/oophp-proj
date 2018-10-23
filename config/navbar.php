@@ -34,4 +34,9 @@ return [
         "url" => "user/user",
         "title" => "User",
     ],
+    [
+        "text" => "Tävling",
+        "url" => "tarning100",
+        "title" => "Tävling",
+    ],
 ];
