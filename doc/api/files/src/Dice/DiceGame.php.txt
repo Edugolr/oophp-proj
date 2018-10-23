@@ -1,0 +1,111 @@
+<?php
+namespace Chai17\Dice;
+
+class DiceGame extends DiceHand implements HistogramInterface
+{
+    use HistogramTrait2;
+    private $players;
+    private $active="player";
+    private $turnSums= [];
+    private $winningPoint;
+
+    public function setWinningPoint($point = 100)
+    {
+        $this->winningPoint = $point;
+    }
+    public function getWinningPoint()
+    {
+        return $this->winningPoint;
+    }
+    public function setPlayerName(string $name = "Player 1")
+    {
+        $this->players['player']["name"] = $name;
+        $this->players['computer']["name"] = "Marvin";
+    }
+    public function getPlayerName()
+    {
+        return $this->players['player']["name"];
+    }
+    public function setComputerName(string $name = "Marvin")
+    {
+        $this->players['computer']["name"] = $name;
+    }
+    public function getComputerName()
+    {
+        return $this->players['computer']["name"];
+    }
+    public function getActiveName()
+    {
+        return $this->players[$this->active]["name"];
+    }
+    public function changePlayer()
+    {
+        if ($this->getActiveName() == $this->getPlayerName()) {
+            $this->active = "computer";
+        } else {
+            $this->active = 'player';
+        }
+    }
+    public function turnSums()
+    {
+        $this->turnSums[] = $this->sum();
+    }
+    public function getTurnSums()
+    {
+        return $this->turnSums;
+    }
+    public function resetTurnsSums()
+    {
+        $this->turnSums= [];
+    }
+    public function getTurnTotal()
+    {
+        return array_sum($this->getTurnSums());
+    }
+    // spara till aktiv spelares total
+    public function save()
+    {
+        $this->players[$this->active]['total'] = $this->players[$this->active]['total'] ?? 0 ;
+        $this->players[$this->active]['total'] += $this->getTurnTotal();
+    }
+
+    public function checkOne(array $test = null)
+    {
+        if ($test) {
+            return in_array("1", $test);
+        }
+        return in_array("1", $this->values());
+    }
+
+    public function getPlayerTotal()
+    {
+        $this->players['player']['total'] = $this->players['player']["total"] ?? 0;
+        return $this->players['player']['total'];
+    }
+    public function getComputerTotal()
+    {
+        $this->players['computer']["total"] = $this->players['computer']["total"]?? 0;
+        return $this->players['computer']["total"];
+    }
+    public function checkWinner()
+    {
+        return $this->players[$this->active]["total"] >= $this->getWinningPoint();
+    }
+    public function computerTurn()
+    {
+        $testProbability = ($this->getNumberOfDices()/$this->getSides())*count($this->getTurnSums());
+        $testWinning = $this->players['computer']["total"] + $this->getTurnTotal();
+        if ($testWinning >= $this->getWinningPoint()) {
+            return "save";
+        } elseif ($testProbability > 0.5) {
+            return "save";
+        } else {
+            return "roll";
+        }
+    }
+    public function __toString()
+    {
+        return "This is a DiceGame class";
+    }
+}
+
