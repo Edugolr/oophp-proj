@@ -1,9 +1,9 @@
 <?php namespace Anax\View; ?>
 <hr>
-<h1>Admin</h1>
+<h1>User</h1>
 
 
-<?php if ($app->session->get("valid")): ?>
+<?php if ($app->session->get("validUser")): ?>
     <div class="nav2">
         <a href="<?= "overview" ?>">Overview</a>
     </div>
@@ -27,6 +27,8 @@
 
         <input class="btn" type="submit" name="" value="Login">
       </div>
-
+    </form>
+    <form action="registerUser" method="get" >
+        <input class="btn" type="submit" name="" value="Register">
     </form>
 <?php endif; ?>

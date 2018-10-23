@@ -27,14 +27,14 @@ class AdminController implements AppInjectableInterface
         $title = "login";
         $this->app->db->connect();
 
-        $this->app->session->set("psw", $this->app->request->getPost('psw'));
-        $this->app->session->set("uname", $this->app->request->getPost('uname'));
+        $this->app->session->set("adminpsw", $this->app->request->getPost('psw'));
+        $this->app->session->set("adminuname", $this->app->request->getPost('uname'));
 
 
-        $params = [$this->app->session->get("psw"), $this->app->session->get("uname")];
+        $params = [$this->app->session->get("adminpsw"), $this->app->session->get("adminuname")];
         $sql = "SELECT * FROM users WHERE password=? AND username=?;";
-        $res = $this->app->db->executeFetchAll($sql, $params);
-        if (!$res) {
+        $res = $this->app->db->executeFetch($sql, $params);
+        if ($res->username != "admin") {
             $this->app->session->getOnce("message", "failed to login");
             $this->app->session->set("valid", False);
             $this->app->response->redirect('admin/admin');
@@ -44,11 +44,14 @@ class AdminController implements AppInjectableInterface
 
         $sql = "SELECT * FROM products;";
         $products = $this->app->db->executeFetchAll($sql);
+        $sql = "SELECT * FROM users;";
+        $users = $this->app->db->executeFetchAll($sql);
         $sql = "SELECT * FROM content;";
         $content = $this->app->db->executeFetchAll($sql);
         $this->app->page->add('admin/overview', [
             "products" => $products,
             "content" => $content,
+            "users" => $users,
         ]);
         return $this->app->page->render([
             "title" => $title,
@@ -57,9 +60,9 @@ class AdminController implements AppInjectableInterface
     public function logoutActionPost()
     {
 
-        $this->app->session->delete("psw");
+        $this->app->session->delete("adminpsw");
         $this->app->session->delete("valid");
-        $this->app->session->delete("uname");
+        $this->app->session->delete("adminuname");
 
         return $this->app->response->redirect("admin/admin");
     }
@@ -70,11 +73,14 @@ class AdminController implements AppInjectableInterface
 
         $sql = "SELECT * FROM products;";
         $products = $this->app->db->executeFetchAll($sql);
+        $sql = "SELECT * FROM users;";
+        $users = $this->app->db->executeFetchAll($sql);
         $sql = "SELECT * FROM content;";
         $content = $this->app->db->executeFetchAll($sql);
         $this->app->page->add('admin/overview', [
             "products" => $products,
             "content" => $content,
+            "users" => $users,
         ]);
         return $this->app->page->render([
             "title" => $title,
@@ -172,7 +178,7 @@ class AdminController implements AppInjectableInterface
         $this->app->db->connect();
         $sql = "INSERT INTO products (title, genre, price, players_min, players_max, age, image, description) VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
 
-        $this->app->db->executeFetch($sql, $params);
+        $this->app->db->execute($sql, $params);
 
         return  $this->app->response->redirect("admin/overview");
     }

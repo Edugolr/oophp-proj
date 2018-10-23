@@ -29,4 +29,9 @@ return [
         "url" => "admin/admin",
         "title" => "Admin",
     ],
+    [
+        "text" => "User",
+        "url" => "user/user",
+        "title" => "User",
+    ],
 ];

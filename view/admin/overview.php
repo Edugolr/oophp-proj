@@ -1,4 +1,6 @@
 <?php namespace Anax\View; ?>
+<hr>
+<?php if ($app->session->get("valid")): ?>
 <h1>Edit Content</h1>
 <form class="" action="createContent" method="get">
     <input class="btn" type="submit" name="" value="Create Content">
@@ -75,3 +77,24 @@
         <?php endforeach; ?>
     </table>
 </div>
+<h1>Users</h1>
+
+<div style="overflow-x:auto;">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>User</th>
+            <th>Created</th>
+        </tr>
+        <?php foreach ($users as $row) : ?>
+          <tr>
+            <td><?= $row->id ?></td>
+            <td><?= $row->username ?></td>
+            <td><?= $row->created_at ?></td>
+          </tr>
+        <?php endforeach; ?>
+    </table>
+</div>
+<?php else: ?>
+    <h1>You are not logged in</h1>
+<?php endif; ?>

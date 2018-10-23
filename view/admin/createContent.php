@@ -1,4 +1,5 @@
 <?php namespace Anax\View; ?>
+<?php if ($app->session->get("valid")): ?>
 <form action="" method="post">
     Title: <input type="text" name="title"  value="title">
     Path: <input type="text" name="path"  value="">
@@ -11,3 +12,6 @@
 
     <input class="btn" type="submit" name="add" value="Create">
 </form>
+<?php else: ?>
+    <h1>You are not logged in</h1>
+<?php endif; ?>

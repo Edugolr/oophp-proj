@@ -1,4 +1,5 @@
 <?php namespace Anax\View; ?>
+<hr>
 <h4><?= $res->title ?></h4>
 <?= $res->data ?>
 <div class="articlefoot">
