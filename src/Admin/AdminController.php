@@ -45,20 +45,7 @@ class AdminController implements AppInjectableInterface
             $this->app->session->set("valid", true);
         }
 
-        $sql = "SELECT * FROM products;";
-        $products = $this->app->db->executeFetchAll($sql);
-        $sql = "SELECT * FROM users;";
-        $users = $this->app->db->executeFetchAll($sql);
-        $sql = "SELECT * FROM content;";
-        $content = $this->app->db->executeFetchAll($sql);
-        $this->app->page->add('admin/overview', [
-            "products" => $products,
-            "content" => $content,
-            "users" => $users,
-        ]);
-        return $this->app->page->render([
-            "title" => $title,
-        ]);
+        return  $this->app->response->redirect("admin/overview");
     }
 
     // logga ut /rensa session för admin login
@@ -82,7 +69,7 @@ class AdminController implements AppInjectableInterface
         $products = $this->app->db->executeFetchAll($sql);
         $sql = "SELECT * FROM users;";
         $users = $this->app->db->executeFetchAll($sql);
-        $sql = "SELECT * FROM content WHERE type='post';";
+        $sql = "SELECT * FROM content;";
         $content = $this->app->db->executeFetchAll($sql);
         $this->app->page->add('admin/overview', [
             "products" => $products,

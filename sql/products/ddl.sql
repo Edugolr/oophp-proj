@@ -12,6 +12,8 @@ CREATE TABLE `products`
   `image` VARCHAR(100) DEFAULT NULL,
   `description` TEXT,
   `filter` VARCHAR(80) DEFAULT "markdown",
+  `recomended` BOOLEAN,
+  `sale` BOOLEAN,
 
   -- MySQL version 5.6 and higher
   `published` DATETIME DEFAULT CURRENT_TIMESTAMP,

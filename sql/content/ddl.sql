@@ -9,6 +9,7 @@ CREATE TABLE `content`
   `data` TEXT,
   `type` CHAR(20) DEFAULT "markdown",
   `filter` VARCHAR(80) DEFAULT NULL,
+  `featured` BOOLEAN,
 
   -- MySQL version 5.6 and higher
   `published` DATETIME DEFAULT CURRENT_TIMESTAMP,

@@ -1,7 +1,6 @@
 <?php
 namespace Chai17\Dice;
 
-
 // En klass för tärningsspelet 100
 class DiceGame extends DiceHand implements HistogramInterface
 {

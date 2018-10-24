@@ -31,7 +31,7 @@ class ContentController implements AppInjectableInterface
     {
         $this->app->db->connect();
         // substring på data för att hålla nere textlöngden
-        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE type='post' ORDER BY published LIMIT 3;";
+        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE type='post' AND deleted IS NULL ORDER BY published LIMIT 3;";
         $posts = $this->app->db->executeFetchAll($sql);
         // filtrera texten genom markdown och shortcode
         foreach ($posts as $row) {

@@ -9,23 +9,13 @@ use PHPUnit\Framework\TestCase;
  */
 class ContentControllerTest extends TestCase
 {
-    //
+    // test filter
     public function testfilterText()
     {
         $contentController = new ContentController();
         $this->assertInstanceOf("\Chai17\Content\ContentController", $contentController);
 
         $res = $contentController->filterText("# markdown", "markdown");
-        $exp = 'string';
-        $this->assertInternalType($exp, $res);
-    }
-    //
-    public function testindexActionGet()
-    {
-        $contentController = new ContentController();
-        $this->assertInstanceOf("\Chai17\Content\ContentController", $contentController);
-
-        $res = $contentController->indexActionGet();
         $exp = 'string';
         $this->assertInternalType($exp, $res);
     }

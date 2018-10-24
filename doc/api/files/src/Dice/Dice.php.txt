@@ -3,7 +3,7 @@
 namespace Chai17\Dice;
 
 /**
- * Showing off a standard class with methods and properties.
+ * en klass för en tärning
  */
 class Dice
 {

@@ -13,7 +13,6 @@ namespace Anax\View;
                 <?=$key ?><input type="text" name="<?=$key ?>" readonly value="<?=$value ?>">
             </p>
         <?php endforeach; ?>
-
         <p>
             <input class="btn red" type="submit"  value="Radera">
         </p>

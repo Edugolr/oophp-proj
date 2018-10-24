@@ -3,7 +3,7 @@ namespace Anax\View;
 
 ?>
 <hr>
-<?php $readonlys = ["id", "path", "created", "updated", "deleted", "published"] ?>
+<?php $readonlys = ["id", "path", "created", "updated", "deleted", "published", "filter"] ?>
 <?php if ($app->session->get("valid")) : ?>
     <div class="nav2">
         <a href="<?= url("admin/overview") ?>">Översikt</a>
@@ -22,7 +22,6 @@ namespace Anax\View;
                         <option value="0">No</option>
                     </select>
                 <?php else : ?>
-
                 <?php if ($key == "data" || $key == "description") : ?>
                         <?=$key ?>
                     <p><textarea name="<?=$key ?>" rows="8" cols="80"><?=$value ?></textarea> </p>
