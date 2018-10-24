@@ -2,7 +2,7 @@
 
 namespace Chai17\Dice;
 
-include(__DIR__ . "/../../vendor/autoload.php");
+// include(__DIR__ . "/../../vendor/autoload.php");
 
 $action = $action ?? null;
 $method = $method ?? null;
@@ -14,7 +14,7 @@ if ($game->getTurnSums()) {
 }
 
 ?>
-<h1><?= $game->getActiveName() ?>'s turn</h1>
+<h1><?= $game->getActiveName() ?>'s tur</h1>
 
 
 <?php if ($game->getActiveName() == $game->getPlayerName()) : ?>
@@ -39,8 +39,8 @@ if ($game->getTurnSums()) {
             <input class="btn red" type="submit" name="reset" value="reset">
         </form>
 
-            <p class="green"><?=$game->getComputerName() ?> wants to <?= $game->computerTurn() ?></p>
-    
+            <p class="green"><?=$game->getComputerName() ?> vill <?= $game->computerTurn() ?></p>
+
 
     <?php endif; ?>
 
@@ -61,8 +61,8 @@ if ($game->getTurnSums()) {
         </h4>
     </div>
     <div class="score  container">
-        <p><?=$game->getPlayerName() ?>'s score: <?=$game->getPlayerTotal() ?></p>
-        <p><?=$game->getComputerName() ?>'s score: <?=$game->getComputerTotal() ?></p>
+        <p><?=$game->getPlayerName() ?>'s poäng: <?=$game->getPlayerTotal() ?></p>
+        <p><?=$game->getComputerName() ?>'s poäng: <?=$game->getComputerTotal() ?></p>
     </div>
     <div class="diceroll  container">
         <p class="dice-utf8 <?=$diceColor ?> marginzero">

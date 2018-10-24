@@ -141,11 +141,25 @@ class UserController implements AppInjectableInterface
     public function bonusActionPost()
     {
         $title = "Bonus";
-        $code = $this->app->request->getPost('code');
-        $params = [$code, $this->app->session->get("useruname")];
+        $bonus = $this->app->request->getPost('bonus');
+        $params = [$bonus, $this->app->session->get("useruname")];
         $this->app->db->connect();
         $sql =  "UPDATE users SET bonus=? WHERE username=?;";
         $this->app->db->execute($sql, $params);
+        $params = [$this->app->session->get("userpsw"), $this->app->session->get("useruname")];
+        $sql = "SELECT * FROM users WHERE password=? AND username=?;";
+        $res = $this->app->db->executeFetch($sql, $params);
+        $this->app->page->add('user/bonus', [
+            "res" => $res
+        ]);
+        return $this->app->page->render([
+            "title" => $title,
+        ]);
+    }
+    public function bonusActionGet()
+    {
+        $title = "Bonus";
+        $this->app->db->connect();
         $params = [$this->app->session->get("userpsw"), $this->app->session->get("useruname")];
         $sql = "SELECT * FROM users WHERE password=? AND username=?;";
         $res = $this->app->db->executeFetch($sql, $params);

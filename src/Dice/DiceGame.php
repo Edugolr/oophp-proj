@@ -90,8 +90,8 @@ class DiceGame extends DiceHand implements HistogramInterface
     }
     public function checkWinner()
     {
-        return $this->players[$this->active]["total"] >= $this->getWinningPoint();
-        // return true;
+        // return $this->players[$this->active]["total"] >= $this->getWinningPoint();
+        return true;
     }
     public function computerTurn()
     {

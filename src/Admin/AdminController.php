@@ -26,7 +26,6 @@ class AdminController implements AppInjectableInterface
     // fånga login post kontrollera och rendera översikts sidan
     public function loginActionPost()
     {
-        $title = "Översikt";
         $this->app->db->connect();
 
         // spara anv/lösen i session

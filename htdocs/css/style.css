@@ -21,9 +21,10 @@ img {
     margin: 0;
 }
 
-.center {
-    margin: auto;
-    width: 40%;
+.center{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .grid-container {
