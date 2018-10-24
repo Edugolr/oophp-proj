@@ -17,13 +17,8 @@ namespace Anax\View;
     <form action="login" method="post" >
 
       <div class="container">
-        <label for="uname"><b>Användare</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-
-        <label for="psw"><b>Lösenord</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-
-
+        <input type="text" placeholder="Användarnamn" name="uname" required>
+        <input type="password" placeholder="Lösenord" name="psw" required>
         <input class="btn" type="submit" name="" value="Logga in">
       </div>
 

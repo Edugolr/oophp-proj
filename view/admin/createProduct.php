@@ -6,8 +6,10 @@ namespace Anax\View;
 
 <?php if ($app->session->get("valid")) : ?>
     <div class="nav2">
-        <a href="<?= url("admin/overview") ?>">Översikt</a>
+        <a href="<?= url("admin/overview") ?>"><i class="fas fa-arrow-left fa-3x"></i></a>Tillbaka
+        <h1>Skapa produkt</h1>
     </div>
+    <hr>
     <form action="" method="post">
         Titel: <input type="text" name="title"  value="title">
         Genre:

@@ -14,6 +14,8 @@ if ($game->getTurnSums()) {
 }
 
 ?>
+
+<hr>
 <h1><?= $game->getActiveName() ?>'s tur</h1>
 
 

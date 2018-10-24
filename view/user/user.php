@@ -15,10 +15,8 @@ namespace Anax\View;
 <?php else : ?>
     <form action="login" method="post" >
       <div class="container">
-        <label for="uname"><b>Användarnamn</b></label>
-        <input type="text" placeholder="Enter Username" name="uname" required>
-        <label for="psw"><b>Lösenord</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
+        <input type="email" placeholder="Användarnamn" name="uname" required>
+        <input type="password" placeholder="Lösenord" name="psw" required>
         <input class="btn floatleft" type="submit" name="" value="Logga in">
       </div>
     </form>

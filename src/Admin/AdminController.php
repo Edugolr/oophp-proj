@@ -2,15 +2,12 @@
 
 namespace Chai17\Admin;
 
-/**
- * kontrollerklass för admin
- */
-
 use Anax\Commons\AppInjectableInterface;
 use Anax\Commons\AppInjectableTrait;
 
 class AdminController implements AppInjectableInterface
 {
+
     use AppInjectableTrait;
     // inloggningssidan
     public function adminActionGet()

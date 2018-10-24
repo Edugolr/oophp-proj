@@ -2,15 +2,12 @@
 
 namespace Chai17\User;
 
-/**
- *
- */
-
 use Anax\Commons\AppInjectableInterface;
 use Anax\Commons\AppInjectableTrait;
 
 class UserController implements AppInjectableInterface
 {
+
     use AppInjectableTrait;
 
     // rendera login för user
@@ -79,8 +76,14 @@ class UserController implements AppInjectableInterface
         $this->app->session->set("userpsw", $this->app->request->getPost('psw'));
         $this->app->session->set("useruname", $this->app->request->getPost('uname'));
 
-        $params = [$this->app->session->get("useruname"), $this->app->session->get("userpsw")];
+
         $this->app->db->connect();
+        $sql = "SELECT * FROM users WHERE username = ?;";
+        $res = $this->app->db->execute($sql, [$this->app->request->getPost('uname')]);
+        if ($res) {
+            return  $this->app->response->redirect("user/registerUser");
+        }
+        $params = [$this->app->session->get("useruname"), $this->app->session->get("userpsw")];
         $sql = "INSERT INTO users (username, password) VALUES (?, ?);";
 
         $this->app->db->execute($sql, $params);

@@ -4,7 +4,6 @@ namespace Anax\View;
 ?>
 <hr>
 <?php if ($app->session->get("validUser")) : ?>
-
     <h1>Välkommen <?= $res->firstname ?></h1>
     <div class="container">
         <img class="center" src="https://www.gravatar.com/avatar/<?=md5(strtolower(trim("$res->username")));?>"/>

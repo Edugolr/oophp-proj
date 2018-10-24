@@ -8,6 +8,7 @@ $action = $action ?? null;
 $method = $method ?? null;
 ?>
 
+<hr>
 <h4>Congratulations <?=$game->getActiveName() ?> you won the Dice pig game</h4>
 <?php if ($game->getActiveName() != $game->getComputerName()) : ?>
     <form class="" action="../user/bonus" method="post" >

@@ -16,14 +16,10 @@ class ContentController implements AppInjectableInterface
     // filter text funktion (använder ramverkets)
     public function filterText($data, $filters)
     {
-         $filter = new \Anax\TextFilter\TextFilter();
+        $filtrera=["markdown", "shortcode"];
+        $filter = new \Anax\TextFilter\TextFilter();
+        return $filter->doFilter($data, $filtrera);
 
-        if (is_array($filter)) {
-            return $filter->doFilter($data, explode(",", $filters));
-        } else {
-            $filters=[$filters, "shortcode"];
-            return $filter->doFilter($data, $filters);
-        }
     }
 
     // rendera startsidan inuti content
@@ -31,14 +27,14 @@ class ContentController implements AppInjectableInterface
     {
         $this->app->db->connect();
         // substring på data för att hålla nere textlöngden
-        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE type='post' AND deleted IS NULL ORDER BY published LIMIT 3;";
+        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE type='post' AND deleted IS NULL ORDER BY published DESC LIMIT 3;";
         $posts = $this->app->db->executeFetchAll($sql);
         // filtrera texten genom markdown och shortcode
         foreach ($posts as $row) {
             $row->data = $this->filterText($row->data, $row->filter);
         }
 
-        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products ORDER BY published LIMIT 3;";
+        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products ORDER BY published DESC  LIMIT 3;";
         $produkts =  $this->app->db->executeFetchAll($sql);
         foreach ($produkts as $row) {
             $row->description = $this->filterText($row->description, $row->filter);
