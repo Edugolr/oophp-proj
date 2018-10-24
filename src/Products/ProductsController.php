@@ -13,17 +13,13 @@ class ProductsController implements AppInjectableInterface
 {
     use AppInjectableTrait;
 
-    // filter funktion från ramverket
+    // filter text funktion (använder ramverkets)
     public function filterText($data, $filters)
     {
-         $filter = new \Anax\TextFilter\TextFilter();
+        $filtrera=["markdown", "shortcode"];
+        $filter = new \Anax\TextFilter\TextFilter();
+        return $filter->doFilter($data, $filtrera);
 
-        if (is_array($filter)) {
-            return $filter->doFilter($data, explode(",", $filters));
-        } else {
-            $filters=[$filters, "shortcode"];
-            return $filter->doFilter($data, $filters);
-        }
     }
 
     // rendera översikt över produkter
@@ -31,7 +27,7 @@ class ProductsController implements AppInjectableInterface
     {
 
         $this->app->db->connect();
-        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products WHERE deleted IS NULL ORDER BY published;";
+        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products WHERE deleted IS NULL ORDER BY title;";
         $res = $this->app->db->executeFetchAll($sql);
         foreach ($res as $row) {
             $row->description = $this->filterText($row->description, $row->filter);
@@ -45,7 +41,7 @@ class ProductsController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
-    
+
     // rendera produkt sida
     public function viewProductActionGet($id)
     {

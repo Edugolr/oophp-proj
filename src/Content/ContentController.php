@@ -52,7 +52,7 @@ class ContentController implements AppInjectableInterface
             $sale->description = $this->filterText($sale->description, $sale->filter);
         }
 
-        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products WHERE recomended = TRUE ORDER BY published LIMIT 3;";
+        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products WHERE recomended = TRUE  ORDER BY published DESC LIMIT 3;";
         $recomended =  $this->app->db->executeFetchAll($sql);
         foreach ($recomended as $row) {
             $row->description = $this->filterText($row->description, $row->filter);
@@ -75,7 +75,7 @@ class ContentController implements AppInjectableInterface
     {
 
         $this->app->db->connect();
-        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE type='post';";
+        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE type='post' ORDER BY published DESC;";
         $res = $this->app->db->executeFetchAll($sql);
 
         foreach ($res as $row) {
