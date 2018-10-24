@@ -3,7 +3,7 @@ namespace Anax\View;
 
 ?>
 <hr>
-<?php $readonlys = ["id", "path", "created", "updated", "deleted", "published", "filter"] ?>
+<?php $readonlys = ["id", "created", "updated", "deleted", "published", "filter"] ?>
 <?php if ($app->session->get("valid")) : ?>
     <div class="nav2">
         <a href="<?= url("admin/overview") ?>"><i class="fas fa-arrow-left fa-3x"></i></a>Tillbaka

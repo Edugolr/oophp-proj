@@ -205,8 +205,6 @@ class AdminController implements AppInjectableInterface
     // uppdatera content
     public function updateContentActionPost($id)
     {
-        $path = $this->app->request->getPost('path');
-        $slug = $this->app->request->getPost('slug');
         $type = $this->app->request->getPost('type');
         $title = $this->app->request->getPost('title');
         $data = $this->app->request->getPost('data');
@@ -214,9 +212,9 @@ class AdminController implements AppInjectableInterface
         $featured = $this->app->request->getPost('featured');
 
 
-        $params = [$path, $slug, $type, $title, $data, $filter, $featured, $id];
+        $params = [$type, $title, $data, $filter, $featured, $id];
         $this->app->db->connect();
-        $sql =  "UPDATE content SET path=?, slug=?, type=?, title=?, data=?, filter=?, featured=? WHERE id=?;";
+        $sql =  "UPDATE content SET type=?, title=?, data=?, filter=?, featured=? WHERE id=?;";
         $this->app->db->executeFetch($sql, $params);
 
         return  $this->app->response->redirect("admin/overview");
@@ -270,16 +268,14 @@ class AdminController implements AppInjectableInterface
     // skapa content
     public function createContentActionPost()
     {
-        $path = $this->app->request->getPost('path');
-        $slug = $this->app->request->getPost('slug');
         $type = $this->app->request->getPost('type');
         $title = $this->app->request->getPost('title');
         $data = $this->app->request->getPost('data');
         $filter = $this->app->request->getPost('filter');
-        $params = [$path, $slug, $type, $title, $data, $filter];
+        $params = [$type, $title, $data, $filter];
 
         $this->app->db->connect();
-        $sql = "INSERT INTO content (path, slug, type, title, data, filter) VALUES (?, ?, ?, ?, ?, ?);";
+        $sql = "INSERT INTO content (type, title, data, filter) VALUES (?, ?, ?, ?);";
 
         $this->app->db->execute($sql, $params);
 

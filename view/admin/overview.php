@@ -20,8 +20,6 @@ namespace Anax\View;
             <th>Created</th>
             <th>Updated</th>
             <th>Deleted</th>
-            <th>Path</th>
-            <th>Slug</th>
             <th>Update</th>
             <th>Delete</th>
         </tr>
@@ -34,8 +32,6 @@ namespace Anax\View;
             <td><?= $row->created ?></td>
             <td><?= $row->updated ?></td>
             <td><?= $row->deleted ?></td>
-            <td><?= $row->path ?></td>
-            <td><?= $row->slug ?></td>
             <td><a href="<?= "updateContent/{$row->id}" ?>" ><i class="material-icons">edit</i></a></td>
             <td><a href="<?= "deleteContent/{$row->id}" ?>" ><i class="material-icons">delete</i></a></td>
           </tr>

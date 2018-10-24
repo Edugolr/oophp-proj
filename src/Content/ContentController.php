@@ -40,13 +40,13 @@ class ContentController implements AppInjectableInterface
             $row->description = $this->filterText($row->description, $row->filter);
         }
 
-        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE featured= TRUE LIMIT 1;";
+        $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE featured=TRUE  ORDER BY published DESC  LIMIT 1;";
         $featured =  $this->app->db->executeFetch($sql);
         if ($featured) {
             $featured->data = $this->filterText($featured->data, $featured->filter);
         }
 
-        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products WHERE sale= TRUE LIMIT 1;";
+        $sql = "SELECT id, title, SUBSTRING_INDEX(description, ' ', 20) AS description, image, published, updated, filter FROM products WHERE sale= TRUE  ORDER BY published DESC  LIMIT 1;";
         $sale =  $this->app->db->executeFetch($sql);
         if ($sale) {
             $sale->description = $this->filterText($sale->description, $sale->filter);
@@ -92,16 +92,15 @@ class ContentController implements AppInjectableInterface
         ]);
     }
 
-    // rendera om sidan
+    // rendera about sidan
     public function omActionGet()
     {
-
         $this->app->db->connect();
         $sql = "SELECT * FROM content WHERE title='Om';";
         $res = $this->app->db->executeFetch($sql);
         $res->data = $this->filterText($res->data, $res->filter);
         $title = $res->title ;
-        $this->app->page->add("$res->path", [
+        $this->app->page->add("content/om", [
             "res" => $res,
         ]);
 

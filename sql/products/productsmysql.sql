@@ -4,7 +4,6 @@ CREATE TABLE `products`
   `id` INT AUTO_INCREMENT PRIMARY KEY NOT NULL,
   `title` VARCHAR(120),
   `genre` CHAR(20) DEFAULT NULL,
-
   `price` DECIMAL(6,2) NOT NULL,
   `players_min` TINYINT DEFAULT NULL,
   `players_max`  TINYINT DEFAULT NULL,
