@@ -3,7 +3,7 @@
 
 $app->router->get("tarning100", function () use ($app) {
     $data = [
-        "title" => "Tärning 100",
+        "title" => "Tävling",
         "action" => "tarning100/reset",
         "method" => "post"
     ];

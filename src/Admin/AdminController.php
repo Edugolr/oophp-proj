@@ -3,7 +3,7 @@
 namespace Chai17\Admin;
 
 /**
- *
+ * kontrollerklass för admin
  */
 
 use Anax\Commons\AppInjectableInterface;
@@ -12,7 +12,7 @@ use Anax\Commons\AppInjectableTrait;
 class AdminController implements AppInjectableInterface
 {
     use AppInjectableTrait;
-
+    // inloggningssidan
     public function adminActionGet()
     {
         $title = "Admin";
@@ -22,15 +22,18 @@ class AdminController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // fånga login post kontrollera och rendera översikts sidan
     public function loginActionPost()
     {
-        $title = "login";
+        $title = "Översikt";
         $this->app->db->connect();
 
+        // spara anv/lösen i session
         $this->app->session->set("adminpsw", $this->app->request->getPost('psw'));
         $this->app->session->set("adminuname", $this->app->request->getPost('uname'));
 
-
+        // kontrollera inloggningen
         $params = [$this->app->session->get("adminpsw"), $this->app->session->get("adminuname")];
         $sql = "SELECT * FROM users WHERE password=? AND username=?;";
         $res = $this->app->db->executeFetch($sql, $params);
@@ -57,6 +60,8 @@ class AdminController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // logga ut /rensa session för admin login
     public function logoutActionPost()
     {
 
@@ -66,9 +71,11 @@ class AdminController implements AppInjectableInterface
 
         return $this->app->response->redirect("admin/admin");
     }
+
+    // fpnga overview get
     public function overviewActionGet()
     {
-        $title = "overview";
+        $title = "Översikt";
         $this->app->db->connect();
 
         $sql = "SELECT * FROM products;";
@@ -86,9 +93,11 @@ class AdminController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // rendera uppdatera produkt sidan
     public function updateProductActionGet($id)
     {
-        $title = "Update";
+        $title = "Uppdatera";
         $this->app->db->connect();
 
         $sql = "SELECT * FROM products WHERE id=?";
@@ -103,6 +112,8 @@ class AdminController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // uppdatera produkt
     public function updateProductActionPost($id)
     {
         $title = $this->app->request->getPost('title');
@@ -125,9 +136,11 @@ class AdminController implements AppInjectableInterface
 
         return  $this->app->response->redirect("admin/updateProduct/{$id}");
     }
+
+    // rendera radera prosukt sidan
     public function deleteProductActionGet($id)
     {
-        $title = "Delete";
+        $title = "Radera";
         $this->app->db->connect();
 
         $sql = "SELECT * FROM products WHERE id=?";
@@ -142,6 +155,8 @@ class AdminController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // radera produkt
     public function deleteProductActionPost($id)
     {
         $this->app->db->connect();
@@ -155,15 +170,19 @@ class AdminController implements AppInjectableInterface
 
         return  $this->app->response->redirect("admin/overview");
     }
+
+    // rendera skapa produkt sidan
     public function createProductActionGet()
     {
-        $title = "Create";
+        $title = "Skapa produkt";
 
         $this->app->page->add('admin/createProduct');
         return $this->app->page->render([
             "title" => $title,
         ]);
     }
+
+    // skapa produkt
     public function createProductActionPost()
     {
         $title = $this->app->request->getPost('title');
@@ -183,9 +202,10 @@ class AdminController implements AppInjectableInterface
         return  $this->app->response->redirect("admin/overview");
     }
 
+    // rendera uppdatera content sidan
     public function updateContentActionGet($id)
     {
-        $title = "Update";
+        $title = "Uppdatera";
         $this->app->db->connect();
 
         $sql = "SELECT * FROM content WHERE id=? ";
@@ -198,6 +218,8 @@ class AdminController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // uppdatera content
     public function updateContentActionPost($id)
     {
         $path = $this->app->request->getPost('path');
@@ -217,9 +239,10 @@ class AdminController implements AppInjectableInterface
         return  $this->app->response->redirect("admin/overview");
     }
 
+    // rendera delete content sidan
     public function deleteContentActionGet($id)
     {
-        $title = "Delete";
+        $title = "Radera";
         $this->app->db->connect();
 
         $sql = "SELECT * FROM content WHERE id=?";
@@ -234,6 +257,8 @@ class AdminController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // radera content
     public function deleteContentActionPost($id)
     {
         $this->app->db->connect();
@@ -247,15 +272,19 @@ class AdminController implements AppInjectableInterface
 
         return  $this->app->response->redirect("admin/overview");
     }
+
+    // rendera skapa content sidan
     public function createContentActionGet()
     {
-        $title = "Create";
+        $title = "Skapa";
 
         $this->app->page->add('admin/createContent');
         return $this->app->page->render([
             "title" => $title,
         ]);
     }
+
+    // skapa content
     public function createContentActionPost()
     {
         $path = $this->app->request->getPost('path');

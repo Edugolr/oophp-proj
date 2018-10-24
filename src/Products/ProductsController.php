@@ -3,7 +3,7 @@
 namespace Chai17\Products;
 
 /**
- *
+ * kontroller klass för products
  */
 
 use Anax\Commons\AppInjectableInterface;
@@ -13,6 +13,7 @@ class ProductsController implements AppInjectableInterface
 {
     use AppInjectableTrait;
 
+    // filter funktion från ramverket
     public function filterText($data, $filters)
     {
          $filter = new \Anax\TextFilter\TextFilter();
@@ -24,6 +25,8 @@ class ProductsController implements AppInjectableInterface
             return $filter->doFilter($data, $filters);
         }
     }
+
+    // rendera översikt över produkter
     public function produkterActionGet()
     {
 
@@ -42,6 +45,8 @@ class ProductsController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+    
+    // rendera produkt sida
     public function viewProductActionGet($id)
     {
         $title = "View";

@@ -30,9 +30,9 @@ return [
         "title" => "Admin",
     ],
     [
-        "text" => "User",
+        "text" => "Användare",
         "url" => "user/user",
-        "title" => "User",
+        "title" => "Användare",
     ],
     [
         "text" => "Tävling",

@@ -13,15 +13,18 @@ class UserController implements AppInjectableInterface
 {
     use AppInjectableTrait;
 
+    // rendera login för user
     public function userActionGet()
     {
-        $title = "User";
+        $title = "Användare";
         $this->app->page->add("user/user");
 
         return $this->app->page->render([
             "title" => $title,
         ]);
     }
+
+    // logga ut användare
     public function logoutActionPost()
     {
 
@@ -31,9 +34,10 @@ class UserController implements AppInjectableInterface
 
         return $this->app->response->redirect("user/user");
     }
+    // logga in användare och rendera översikt
     public function loginActionPost()
     {
-        $title = "login";
+        $title = "Översikt";
         $this->app->db->connect();
 
         $this->app->session->set("userpsw", $this->app->request->getPost('psw'));
@@ -59,15 +63,17 @@ class UserController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+    // rendera registrerings sidan
     public function registerUserActionGet()
     {
-        $title = "User" ;
+        $title = "Registrera" ;
         $this->app->page->add("user/registerUser");
 
         return $this->app->page->render([
             "title" => $title,
         ]);
     }
+    // registrera ny användare
     public function registerUserActionPost()
     {
         $this->app->session->set("userpsw", $this->app->request->getPost('psw'));
@@ -80,9 +86,10 @@ class UserController implements AppInjectableInterface
         $this->app->db->execute($sql, $params);
         return  $this->app->response->redirect("user/user");
     }
+    // rendera översikts sidan
     public function overviewActionGet()
     {
-        $title = "overview";
+        $title = "Översikt";
         $this->app->db->connect();
 
 
@@ -97,9 +104,10 @@ class UserController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+    // rendera redigera sidan
     public function editActionGet()
     {
-        $title = "overview";
+        $title = "Redigera";
         $this->app->db->connect();
 
 
@@ -114,6 +122,7 @@ class UserController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+    // redigera användar info
     public function editActionPost()
     {
         $firstname = $this->app->request->getPost('firstname');
@@ -128,6 +137,7 @@ class UserController implements AppInjectableInterface
         $this->app->db->execute($sql, $params);
         return  $this->app->response->redirect("user/overview");
     }
+    // rendera bonus sidan samt lägg in bonus på användaren
     public function bonusActionPost()
     {
         $title = "Bonus";
@@ -146,6 +156,7 @@ class UserController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+    // uppdatera så användaren använt sin bonus och återgå till översikt
     public function claimbonusActionPost()
     {
         $bonus = $this->app->request->getPost('bonus');

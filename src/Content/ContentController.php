@@ -3,7 +3,7 @@
 namespace Chai17\Content;
 
 /**
- *
+ *kontroller klass för content
  */
 
 use Anax\Commons\AppInjectableInterface;
@@ -13,6 +13,7 @@ class ContentController implements AppInjectableInterface
 {
     use AppInjectableTrait;
 
+    // filter text funktion (använder ramverkets)
     public function filterText($data, $filters)
     {
          $filter = new \Anax\TextFilter\TextFilter();
@@ -25,11 +26,14 @@ class ContentController implements AppInjectableInterface
         }
     }
 
+    // rendera startsidan inuti content
     public function indexActionGet()
     {
         $this->app->db->connect();
+        // substring på data för att hålla nere textlöngden
         $sql = "SELECT id, SUBSTRING_INDEX(data, ' ', 20) AS data, title, published, updated, filter FROM content WHERE type='post' ORDER BY published LIMIT 3;";
         $posts = $this->app->db->executeFetchAll($sql);
+        // filtrera texten genom markdown och shortcode
         foreach ($posts as $row) {
             $row->data = $this->filterText($row->data, $row->filter);
         }
@@ -57,7 +61,7 @@ class ContentController implements AppInjectableInterface
         foreach ($recomended as $row) {
             $row->description = $this->filterText($row->description, $row->filter);
         }
-        $title = "Nyheter" ;
+        $title = "Hem" ;
         $this->app->page->add("content/index", [
             "posts" => $posts,
             "featured" => $featured,
@@ -70,6 +74,7 @@ class ContentController implements AppInjectableInterface
         ]);
     }
 
+    // rendera nyhets sidan
     public function bloggActionGet()
     {
 
@@ -81,7 +86,7 @@ class ContentController implements AppInjectableInterface
             $row->data = $this->filterText($row->data, $row->filter);
         }
 
-        $title = "blogg";
+        $title = "Nyheter";
         $this->app->page->add("content/blogg", [
             "res" => $res,
         ]);
@@ -90,6 +95,8 @@ class ContentController implements AppInjectableInterface
             "title" => $title,
         ]);
     }
+
+    // rendera om sidan
     public function omActionGet()
     {
 
@@ -107,6 +114,7 @@ class ContentController implements AppInjectableInterface
         ]);
     }
 
+    // rendera visa content sidan
     public function viewContentActionGet($id)
     {
         $title = "View";
